@@ -1,0 +1,6 @@
+# Omshree Industries Service Website
+# Files to ignore from git
+project_context.md
+proposed_website_architecture.jpg
+visiting_card.jpg
+*.md
