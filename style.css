@@ -487,6 +487,46 @@ input, textarea, select { font-family: inherit; }
 .footer-bottom p { font-size: 0.83rem; color: var(--davys-grey); }
 .footer-bottom p span { color: var(--persian-red); }
 
+/* ─── SOCIAL MEDIA BUTTONS ───────────────────────────────── */
+.social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn-sm { width: 38px; height: 38px; border-radius: var(--radius-sm); border: 1px solid rgba(141,154,174,0.2); display: flex; align-items: center; justify-content: center; color: var(--steel-silver); transition: all var(--t-smooth); flex-shrink: 0; }
+.social-btn-sm svg { width: 18px; height: 18px; fill: currentColor; }
+.social-btn-sm:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.social-btn-sm.ig:hover { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); border-color: transparent; color: var(--white); }
+.social-btn-sm.li:hover { background: #0A66C2; border-color: #0A66C2; color: var(--white); }
+.social-btn-sm.fb:hover { background: #1877F2; border-color: #1877F2; color: var(--white); }
+.social-btn-sm.wa:hover { background: #25D366; border-color: #25D366; color: var(--white); }
+
+/* ─── DIGITAL VISITING CARD ──────────────────────────────── */
+.vcard-section { background: var(--oxford-blue); padding: var(--section-py) 0; }
+.vcard-wrapper { display: flex; gap: 60px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.vcard-frame { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(141,154,174,0.12); max-width: 500px; width: 100%; transition: transform var(--t-smooth), box-shadow var(--t-smooth); cursor: pointer; }
+.vcard-frame:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(192,57,43,0.3), 0 0 40px rgba(192,57,43,0.1); }
+.vcard-frame img { width: 100%; height: auto; display: block; }
+.vcard-shine { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(255,255,255,0.03) 100%); pointer-events: none; }
+.vcard-actions { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.vcard-info h3 { font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem; color: var(--white); margin-bottom: 8px; }
+.vcard-info p { font-size: 0.95rem; color: var(--steel-silver); line-height: 1.7; max-width: 320px; margin-bottom: 28px; }
+.vcard-btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; padding: 14px 28px; border-radius: var(--radius-sm); transition: all var(--t-smooth); }
+.vcard-btn.download { background: var(--persian-red); color: var(--white); }
+.vcard-btn.download:hover { background: var(--persian-red-d); transform: translateY(-2px); box-shadow: var(--shadow-red); }
+.vcard-btn.share { background: transparent; color: var(--cosmic-latte); border: 1.5px solid rgba(141,154,174,0.3); }
+.vcard-btn.share:hover { border-color: var(--machined-gold); color: var(--machined-gold); transform: translateY(-2px); }
+.vcard-tap-hint { position: absolute; bottom: 12px; right: 12px; background: rgba(10,22,40,0.85); color: var(--white); font-size: 0.78rem; font-weight: 600; padding: 6px 14px; border-radius: 20px; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15); pointer-events: none; transition: all var(--t-smooth); }
+.vcard-frame:hover .vcard-tap-hint { background: var(--persian-red); border-color: var(--persian-red); }
+.vcard-quick-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.vcard-pill { font-size: 0.8rem; color: var(--steel-silver); background: rgba(255,255,255,0.04); border: 1px solid rgba(141,154,174,0.15); padding: 6px 12px; border-radius: var(--radius-sm); text-decoration: none; transition: all var(--t-smooth); }
+.vcard-pill:hover { border-color: var(--persian-red); color: var(--white); background: rgba(192,57,43,0.1); }
+
+/* ─── VCARD MODAL LIGHTBOX ───────────────────────────────── */
+.vcard-modal { display: none; position: fixed; inset: 0; background: rgba(10,22,40,0.92); z-index: 10000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
+.vcard-modal.open { display: flex; }
+.vcard-modal-inner { position: relative; max-width: 700px; width: 100%; animation: vcardZoom 0.35s cubic-bezier(0.4,0,0.2,1); }
+.vcard-modal-inner img { width: 100%; border-radius: 16px; box-shadow: 0 40px 100px rgba(0,0,0,0.7); }
+.vcard-modal-close { position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; background: var(--persian-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.2rem; cursor: pointer; transition: all var(--t-smooth); box-shadow: var(--shadow-red); border: none; font-family: var(--font-heading); font-weight: 700; }
+.vcard-modal-close:hover { background: var(--persian-red-d); transform: scale(1.1) rotate(90deg); }
+@keyframes vcardZoom { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+
 /* ─── WHATSAPP FLOAT ─────────────────────────────────────── */
 .wa-float { position: fixed; bottom: 32px; right: 32px; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 6px 24px rgba(37,211,102,0.4); z-index: 999; transition: all var(--t-smooth); animation: wa-pulse 3s ease-in-out infinite; }
 .wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,0.55); animation: none; }
@@ -565,4 +605,8 @@ input, textarea, select { font-family: inherit; }
   .coverage-card { padding: 28px 20px; }
   .timeline { padding-left: 32px; }
   .timeline-dot { left: -39px; width: 14px; height: 14px; }
+  .vcard-wrapper { gap: 28px; }
+  .vcard-actions { width: 100%; }
+  .vcard-actions .vcard-btn { width: 100%; justify-content: center; }
+  .vcard-quick-pills { width: 100%; }
 }

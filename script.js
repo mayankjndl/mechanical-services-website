@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initFaqAccordion();
   initMarquee();
+  initVisitingCard();
 });
 
 /* ─── STICKY HEADER ─────────────────────────────────────── */
@@ -185,6 +186,56 @@ function showToast(msg) {
   document.body.appendChild(t);
   requestAnimationFrame(() => { t.style.opacity = '1'; t.style.transform = 'translateY(0)'; });
   setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 400); }, 5000);
+}
+
+/* ─── DIGITAL VISITING CARD MODAL & SHARE ─────────────────── */
+function initVisitingCard() {
+  const trigger = document.getElementById('vcard-trigger');
+  const modal = document.getElementById('vcard-modal');
+  const closeBtn = document.getElementById('vcard-modal-close');
+  const shareBtn = document.getElementById('vcard-share-btn');
+
+  if (trigger && modal) {
+    trigger.addEventListener('click', () => {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    const closeModal = () => {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  }
+
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: 'Omshree Industries Service — Digital Visiting Card',
+        text: 'Contact Omshree Industries Service for industrial machine repair, CNC/VMC maintenance, and skilled manpower in Pune & PCMC. Phone: +91 9545318160.',
+        url: window.location.href.split('#')[0] + '#digital-card'
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          // user cancelled or share failed
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.origin ? window.location.href.split('#')[0] + '#digital-card' : shareData.text);
+          showToast('📋 Visiting card link copied to clipboard!');
+        } catch {
+          showToast('Direct contact: +91 9545318160');
+        }
+      }
+    });
+  }
 }
 
 /* ─── RUNTIME STYLE INJECTIONS ──────────────────────────── */
