@@ -357,6 +357,11 @@ input, textarea, select { font-family: inherit; }
 .form-success h4 { font-family: var(--font-heading); font-weight: 700; color: var(--machined-gold); font-size: 1.5rem; margin-bottom: 8px; }
 .form-success p { color: var(--steel-silver); }
 
+/* ─── TWO-COLUMN RESPONSIVE LAYOUT ──────────────────────── */
+.two-col-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.two-col-layout.align-center { align-items: center; }
+.coverage-card { background: rgba(10,22,40,0.5); border: 1px solid rgba(141,154,174,0.12); border-radius: 18px; padding: 48px 40px; }
+
 /* ─── ABOUT PAGE SPECIFIC ────────────────────────────────── */
 .timeline { position: relative; padding-left: 40px; }
 .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--persian-red), var(--machined-gold)); }
@@ -529,6 +534,7 @@ input, textarea, select { font-family: inherit; }
   .contact-methods-grid { grid-template-columns: repeat(2, 1fr); }
   .hours-grid { grid-template-columns: 1fr; }
   .value-cards { grid-template-columns: 1fr; }
+  .two-col-layout { grid-template-columns: 1fr; gap: 48px; }
 }
 
 @media (max-width: 640px) {
@@ -555,4 +561,8 @@ input, textarea, select { font-family: inherit; }
   .cta-actions { flex-direction: column; width: 100%; }
   .btn-white, .btn-ghost-white { justify-content: center; }
   .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .two-col-layout { gap: 36px; }
+  .coverage-card { padding: 28px 20px; }
+  .timeline { padding-left: 32px; }
+  .timeline-dot { left: -39px; width: 14px; height: 14px; }
 }
