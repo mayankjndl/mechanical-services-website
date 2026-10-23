@@ -175,6 +175,13 @@
             <a href="https://wa.me/919545318160" class="social-btn-sm wa" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
           </div>
         </div>
+        <div style="margin-top:20px; padding:12px 16px; background:rgba(212,168,67,0.06); border:1px solid rgba(212,168,67,0.2); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:space-between; gap:12px;">
+          <div>
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">🪪 Digital Visiting Card</div>
+            <div style="font-size:0.74rem; color:var(--steel-silver);">Official card for your records</div>
+          </div>
+          <a href="#digital-card" class="btn btn-red" style="font-size:0.75rem; padding:6px 14px; white-space:nowrap;">View Card ↓</a>
+        </div>
       </aside>
       <!-- Form -->
       <div class="reveal reveal-right">
@@ -283,51 +290,49 @@
   </div>
 </section>
 
-<!-- ═══ DIGITAL VISITING CARD SECTION ═════════════════════════ -->
+<!-- ═══ DIGITAL VISITING CARD (MINIMAL & EMBEDDED) ─────────── -->
 <section id="digital-card" class="vcard-section" aria-labelledby="vcard-title">
   <div class="container">
-    <div style="text-align:center; margin-bottom:48px;">
-      <div class="section-label reveal" style="justify-content:center;"><span class="step-num">Identity</span><span class="step-divider"></span><span class="step-tag">Digital Business Card</span></div>
-      <h2 class="section-title reveal" id="vcard-title" style="text-align:center;">Official <span>Digital Visiting Card</span></h2>
-      <p class="section-subtitle reveal" style="max-width:620px; margin:12px auto 0; text-align:center;">Save our verified business card to your phone, download the card image, or share it directly with your plant maintenance and procurement departments.</p>
-    </div>
-    
-    <div class="vcard-wrapper">
-      <!-- Interactive Card Frame with Zoom Trigger -->
-      <div class="vcard-frame reveal reveal-left" id="vcard-trigger" title="Click to view full size image">
-        <img src="visiting_card.jpg" alt="Omshree Industries Service Digital Visiting Card - Pratibha Pandhari Wadje" width="500" height="280" loading="lazy" />
-        <div class="vcard-shine"></div>
-        <div class="vcard-tap-hint">🔍 Tap to Enlarge</div>
-      </div>
+    <div class="vcard-card-container reveal">
       
-      <!-- Card Details & Actions -->
-      <div class="vcard-actions reveal reveal-right">
-        <div class="vcard-info">
-          <div style="background:rgba(192,57,43,0.15); color:var(--persian-red); border:1px solid rgba(192,57,43,0.3); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; display:inline-block; margin-bottom:12px;">Verified Industrial Firm</div>
-          <h3>Pratibha Pandhari Wadje</h3>
-          <div style="color:var(--machined-gold); font-size:0.95rem; font-weight:600; margin-bottom:12px;">Proprietor · Omshree Industries Service</div>
-          <p>Industrial machines repair and maintenance services — HMC, VMC, CNC machine maintenance, SPM crane maintenance, and skilled industrial manpower across Pune &amp; PCMC.</p>
-        </div>
-        
-        <div style="display:flex; flex-wrap:wrap; gap:12px; width:100%;">
-          <a href="visiting_card.jpg" download="Omshree_Industries_Service_Visiting_Card.jpg" class="vcard-btn download">
-            <span>📥 Download Card (JPG)</span>
-          </a>
-          <button type="button" class="vcard-btn share" id="vcard-share-btn">
-            <span>📤 Share Card</span>
-          </button>
-          <a href="https://wa.me/?text=Here%20is%20the%20Digital%20Visiting%20Card%20for%20Omshree%20Industries%20Service%20(Industrial%20Machine%20Repair%20%26%20Maintenance)%3A%20Contact%20%2B919545318160" target="_blank" rel="noopener noreferrer" class="vcard-btn" style="background:#25D366; color:var(--white);">
-            <span>💬 Send via WhatsApp</span>
-          </a>
-        </div>
-
-        <div class="vcard-quick-pills">
-          <a href="tel:+919545318160" class="vcard-pill">📞 +91 9545318160</a>
-          <a href="tel:02045366311" class="vcard-pill">☎️ 020 4536 6311</a>
-          <a href="mailto:omshreeindustriesservices@gmail.com" class="vcard-pill">✉️ omshreeindustriesservices@gmail.com</a>
-          <span class="vcard-pill">📍 PCMC Pune — 411062</span>
+      <!-- Card Visual Showcase -->
+      <div class="vcard-visual-col">
+        <div class="vcard-frame" id="vcard-trigger" title="Click to enlarge visiting card" role="button" tabindex="0" aria-label="Enlarge visiting card">
+          <img src="visiting_card.jpg" alt="Omshree Industries Service Digital Visiting Card - Pratibha Pandhari Wadje" width="780" height="444" loading="lazy" />
+          <div class="vcard-glass-shine"></div>
+          <div class="vcard-enlarge-pill">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <span>Tap to Enlarge</span>
+          </div>
         </div>
       </div>
+
+      <!-- Minimal Refined Action Column -->
+      <div class="vcard-content-col">
+        <div class="vcard-badge">
+          <span class="vcard-badge-dot"></span>
+          <span>Official Business Card</span>
+        </div>
+        <h3 id="vcard-title" class="vcard-heading">Omshree Industries <span>Service</span></h3>
+        <p class="vcard-subline">Industrial Machines Repair &amp; Maintenance · PCMC &amp; Pune</p>
+        <p class="vcard-description">Save our verified contact card directly to your phone, download the image for your procurement records, or share it with your maintenance team for quick reference during machine breakdowns.</p>
+        
+        <div class="vcard-actions-group">
+          <a href="visiting_card.jpg" download="Omshree_Industries_Service_Visiting_Card.jpg" id="vcard-download-btn" class="vcard-action-btn primary" title="Download visiting card image">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+            <span>Download Card</span>
+          </a>
+          <button type="button" id="vcard-share-btn" class="vcard-action-btn secondary" title="Share visiting card link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+            <span>Share</span>
+          </button>
+          <a href="https://wa.me/?text=Here%20is%20the%20Digital%20Visiting%20Card%20for%20Omshree%20Industries%20Service%20(Industrial%20Machine%20Repair%20%26%20Maintenance)%3A%20Contact%20%2B919545318160" target="_blank" rel="noopener noreferrer" class="vcard-action-btn whatsapp" title="Share on WhatsApp">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -337,9 +342,9 @@
   <div class="vcard-modal-inner">
     <button type="button" class="vcard-modal-close" id="vcard-modal-close" aria-label="Close modal">✕</button>
     <img src="visiting_card.jpg" alt="Omshree Industries Service Visiting Card Full View" />
-    <div style="text-align:center; margin-top:20px; display:flex; gap:12px; justify-content:center;">
-      <a href="visiting_card.jpg" download="Omshree_Industries_Service_Visiting_Card.jpg" class="vcard-btn download" style="font-size:0.85rem; padding:10px 20px;">📥 Download Image</a>
-      <a href="tel:+919545318160" class="vcard-btn share" style="font-size:0.85rem; padding:10px 20px;">📞 Call Direct</a>
+    <div class="vcard-modal-footer">
+      <a href="visiting_card.jpg" download="Omshree_Industries_Service_Visiting_Card.jpg" class="btn btn-red" style="font-size:0.85rem; padding:10px 22px;">📥 Download Card</a>
+      <a href="tel:+919545318160" class="btn btn-outline" style="font-size:0.85rem; padding:10px 22px;">📞 Call Direct</a>
     </div>
   </div>
 </div>

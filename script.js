@@ -188,7 +188,7 @@ function showToast(msg) {
   setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 400); }, 5000);
 }
 
-/* ─── DIGITAL VISITING CARD MODAL & SHARE ─────────────────── */
+/* ─── DIGITAL VISITING CARD MODAL & DOWNLOAD & SHARE ─────── */
 function initVisitingCard() {
   const trigger = document.getElementById('vcard-trigger');
   const modal = document.getElementById('vcard-modal');
@@ -196,14 +196,23 @@ function initVisitingCard() {
   const shareBtn = document.getElementById('vcard-share-btn');
 
   if (trigger && modal) {
-    trigger.addEventListener('click', () => {
+    const openModal = () => {
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
-    });
+    };
     const closeModal = () => {
       modal.classList.remove('open');
       document.body.style.overflow = '';
     };
+
+    trigger.addEventListener('click', openModal);
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal();
+      }
+    });
+
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
@@ -213,11 +222,36 @@ function initVisitingCard() {
     });
   }
 
+  // Robust blob-based download handling
+  const downloadBtns = document.querySelectorAll('a[download*="visiting_card"], a[download*="Visiting_Card"], #vcard-download-btn');
+  downloadBtns.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const res = await fetch('visiting_card.jpg');
+        if (!res.ok) throw new Error('File not accessible');
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = 'Omshree_Industries_Service_Visiting_Card.jpg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+        showToast('📥 Visiting card downloaded successfully!');
+      } catch (err) {
+        // Fallback to direct navigation / download attribute
+        window.open('visiting_card.jpg', '_blank');
+      }
+    });
+  });
+
   if (shareBtn) {
     shareBtn.addEventListener('click', async () => {
       const shareData = {
         title: 'Omshree Industries Service — Digital Visiting Card',
-        text: 'Contact Omshree Industries Service for industrial machine repair, CNC/VMC maintenance, and skilled manpower in Pune & PCMC. Phone: +91 9545318160.',
+        text: 'Omshree Industries Service — Industrial machines repair, CNC/VMC maintenance & skilled manpower in Pune & PCMC. Phone: +91 9545318160.',
         url: window.location.href.split('#')[0] + '#digital-card'
       };
       if (navigator.share) {
@@ -228,7 +262,7 @@ function initVisitingCard() {
         }
       } else {
         try {
-          await navigator.clipboard.writeText(window.location.origin ? window.location.href.split('#')[0] + '#digital-card' : shareData.text);
+          await navigator.clipboard.writeText(shareData.url);
           showToast('📋 Visiting card link copied to clipboard!');
         } catch {
           showToast('Direct contact: +91 9545318160');

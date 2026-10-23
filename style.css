@@ -497,35 +497,287 @@ input, textarea, select { font-family: inherit; }
 .social-btn-sm.fb:hover { background: #1877F2; border-color: #1877F2; color: var(--white); }
 .social-btn-sm.wa:hover { background: #25D366; border-color: #25D366; color: var(--white); }
 
-/* ─── DIGITAL VISITING CARD ──────────────────────────────── */
-.vcard-section { background: var(--oxford-blue); padding: var(--section-py) 0; }
-.vcard-wrapper { display: flex; gap: 60px; align-items: center; justify-content: center; flex-wrap: wrap; }
-.vcard-frame { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(141,154,174,0.12); max-width: 500px; width: 100%; transition: transform var(--t-smooth), box-shadow var(--t-smooth); cursor: pointer; }
-.vcard-frame:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(192,57,43,0.3), 0 0 40px rgba(192,57,43,0.1); }
-.vcard-frame img { width: 100%; height: auto; display: block; }
-.vcard-shine { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(255,255,255,0.03) 100%); pointer-events: none; }
-.vcard-actions { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
-.vcard-info h3 { font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem; color: var(--white); margin-bottom: 8px; }
-.vcard-info p { font-size: 0.95rem; color: var(--steel-silver); line-height: 1.7; max-width: 320px; margin-bottom: 28px; }
-.vcard-btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; padding: 14px 28px; border-radius: var(--radius-sm); transition: all var(--t-smooth); }
-.vcard-btn.download { background: var(--persian-red); color: var(--white); }
-.vcard-btn.download:hover { background: var(--persian-red-d); transform: translateY(-2px); box-shadow: var(--shadow-red); }
-.vcard-btn.share { background: transparent; color: var(--cosmic-latte); border: 1.5px solid rgba(141,154,174,0.3); }
-.vcard-btn.share:hover { border-color: var(--machined-gold); color: var(--machined-gold); transform: translateY(-2px); }
-.vcard-tap-hint { position: absolute; bottom: 12px; right: 12px; background: rgba(10,22,40,0.85); color: var(--white); font-size: 0.78rem; font-weight: 600; padding: 6px 14px; border-radius: 20px; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15); pointer-events: none; transition: all var(--t-smooth); }
-.vcard-frame:hover .vcard-tap-hint { background: var(--persian-red); border-color: var(--persian-red); }
-.vcard-quick-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.vcard-pill { font-size: 0.8rem; color: var(--steel-silver); background: rgba(255,255,255,0.04); border: 1px solid rgba(141,154,174,0.15); padding: 6px 12px; border-radius: var(--radius-sm); text-decoration: none; transition: all var(--t-smooth); }
-.vcard-pill:hover { border-color: var(--persian-red); color: var(--white); background: rgba(192,57,43,0.1); }
+/* ─── DIGITAL VISITING CARD (MINIMAL & EMBEDDED) ─────────── */
+.vcard-section {
+  padding: 60px 0;
+  background: var(--charcoal);
+  border-top: 1px solid rgba(141, 154, 174, 0.1);
+  border-bottom: 1px solid rgba(141, 154, 174, 0.1);
+  position: relative;
+}
+
+.vcard-card-container {
+  max-width: 960px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(17, 30, 49, 0.85) 0%, rgba(10, 22, 40, 0.95) 100%);
+  border: 1px solid rgba(141, 154, 174, 0.16);
+  border-radius: 18px;
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.vcard-card-container::before {
+  content: '';
+  position: absolute;
+  top: -90px;
+  left: -90px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(192, 57, 43, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.vcard-visual-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vcard-frame {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  width: 100%;
+  max-width: 460px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+.vcard-frame:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(212, 168, 67, 0.5), 0 0 25px rgba(192, 57, 43, 0.2);
+}
+
+.vcard-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vcard-glass-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 45%, rgba(255, 255, 255, 0.04) 100%);
+  pointer-events: none;
+}
+
+.vcard-enlarge-pill {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(10, 22, 40, 0.85);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+  transition: all var(--t-smooth);
+}
+
+.vcard-frame:hover .vcard-enlarge-pill {
+  background: var(--persian-red);
+  border-color: var(--persian-red);
+}
+
+.vcard-content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vcard-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--machined-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.vcard-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--machined-gold);
+  box-shadow: 0 0 8px var(--machined-gold);
+}
+
+.vcard-heading {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.vcard-heading span {
+  color: var(--persian-red);
+}
+
+.vcard-subline {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--steel-silver);
+  margin-bottom: 12px;
+}
+
+.vcard-description {
+  font-size: 0.88rem;
+  color: rgba(224, 225, 221, 0.8);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.vcard-actions-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.vcard-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  transition: all var(--t-smooth);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+
+.vcard-action-btn.primary {
+  background: var(--persian-red);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(192, 57, 43, 0.3);
+}
+
+.vcard-action-btn.primary:hover {
+  background: var(--persian-red-d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(192, 57, 43, 0.45);
+}
+
+.vcard-action-btn.secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--cosmic-latte);
+  border: 1px solid rgba(141, 154, 174, 0.25);
+}
+
+.vcard-action-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--machined-gold);
+  color: var(--machined-gold);
+  transform: translateY(-2px);
+}
+
+.vcard-action-btn.whatsapp {
+  background: rgba(37, 211, 102, 0.12);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.vcard-action-btn.whatsapp:hover {
+  background: #25D366;
+  color: var(--white);
+  border-color: #25D366;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+}
 
 /* ─── VCARD MODAL LIGHTBOX ───────────────────────────────── */
-.vcard-modal { display: none; position: fixed; inset: 0; background: rgba(10,22,40,0.92); z-index: 10000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
-.vcard-modal.open { display: flex; }
-.vcard-modal-inner { position: relative; max-width: 700px; width: 100%; animation: vcardZoom 0.35s cubic-bezier(0.4,0,0.2,1); }
-.vcard-modal-inner img { width: 100%; border-radius: 16px; box-shadow: 0 40px 100px rgba(0,0,0,0.7); }
-.vcard-modal-close { position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; background: var(--persian-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.2rem; cursor: pointer; transition: all var(--t-smooth); box-shadow: var(--shadow-red); border: none; font-family: var(--font-heading); font-weight: 700; }
-.vcard-modal-close:hover { background: var(--persian-red-d); transform: scale(1.1) rotate(90deg); }
-@keyframes vcardZoom { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+.vcard-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.92);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.vcard-modal.open {
+  display: flex;
+}
+
+.vcard-modal-inner {
+  position: relative;
+  max-width: 680px;
+  width: 100%;
+  animation: vcardZoom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.vcard-modal-inner img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  display: block;
+  background: #fff;
+}
+
+.vcard-modal-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px;
+  height: 36px;
+  background: var(--persian-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all var(--t-smooth);
+  box-shadow: var(--shadow-red);
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  z-index: 10;
+}
+
+.vcard-modal-close:hover {
+  background: var(--persian-red-d);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.vcard-modal-footer {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+@keyframes vcardZoom {
+  from { opacity: 0; transform: scale(0.88); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 
 /* ─── WHATSAPP FLOAT ─────────────────────────────────────── */
 .wa-float { position: fixed; bottom: 32px; right: 32px; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 6px 24px rgba(37,211,102,0.4); z-index: 999; transition: all var(--t-smooth); animation: wa-pulse 3s ease-in-out infinite; }
@@ -605,8 +857,21 @@ input, textarea, select { font-family: inherit; }
   .coverage-card { padding: 28px 20px; }
   .timeline { padding-left: 32px; }
   .timeline-dot { left: -39px; width: 14px; height: 14px; }
-  .vcard-wrapper { gap: 28px; }
-  .vcard-actions { width: 100%; }
-  .vcard-actions .vcard-btn { width: 100%; justify-content: center; }
-  .vcard-quick-pills { width: 100%; }
+  .vcard-card-container {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 24px;
+    text-align: center;
+  }
+  .vcard-content-col {
+    align-items: center;
+  }
+  .vcard-actions-group {
+    justify-content: center;
+    width: 100%;
+  }
+  .vcard-action-btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
 }
