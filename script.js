@@ -247,12 +247,28 @@ function initVisitingCard() {
     });
   });
 
+  const getCardShareUrl = () => {
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (isLocal) {
+      return 'https://mechanical-services-website.vercel.app/contact.html#digital-card';
+    }
+    return window.location.href.split('#')[0] + '#digital-card';
+  };
+
+  const waBtn = document.getElementById('vcard-wa-btn');
+  if (waBtn) {
+    const cardUrl = getCardShareUrl();
+    const waText = `Omshree Industries Service — Industrial machines repair, CNC/VMC maintenance & skilled manpower in Pune & PCMC. Phone: +91 9545318160. ${cardUrl}`;
+    waBtn.href = `https://wa.me/?text=${encodeURIComponent(waText)}`;
+  }
+
   if (shareBtn) {
     shareBtn.addEventListener('click', async () => {
+      const cardUrl = getCardShareUrl();
       const shareData = {
         title: 'Omshree Industries Service — Digital Visiting Card',
         text: 'Omshree Industries Service — Industrial machines repair, CNC/VMC maintenance & skilled manpower in Pune & PCMC. Phone: +91 9545318160.',
-        url: window.location.href.split('#')[0] + '#digital-card'
+        url: cardUrl
       };
       if (navigator.share) {
         try {
