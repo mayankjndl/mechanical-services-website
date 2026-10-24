@@ -483,9 +483,24 @@ input, textarea, select { font-family: inherit; }
 .footer-contact-item .fci-icon { color: var(--persian-red); flex-shrink: 0; margin-top: 2px; }
 .footer-contact-item a { color: var(--steel-silver); transition: color var(--t-fast); }
 .footer-contact-item a:hover { color: var(--persian-red); }
-.footer-bottom { border-top: 1px solid rgba(141,154,174,0.1); padding: 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-bottom { border-top: 1px solid rgba(141,154,174,0.1); padding: 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .footer-bottom p { font-size: 0.83rem; color: var(--davys-grey); }
 .footer-bottom p span { color: var(--persian-red); }
+
+/* ─── GSTIN STYLING (MINIMAL & PROFESSIONAL) ─────────────── */
+.footer-bottom-info { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.footer-gst-tag { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(141, 154, 174, 0.2); border-radius: var(--radius-sm); font-size: 0.78rem; transition: all var(--t-fast); vertical-align: middle; }
+.footer-gst-tag:hover { background: rgba(212, 168, 67, 0.08); border-color: rgba(212, 168, 67, 0.4); }
+.footer-gst-tag .gst-label { font-family: var(--font-heading); font-weight: 800; font-size: 0.68rem; color: var(--machined-gold); letter-spacing: 0.08em; text-transform: uppercase; }
+.footer-gst-tag .gst-val { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; color: var(--cosmic-latte); font-weight: 600; letter-spacing: 0.05em; }
+
+.contact-gstin-badge { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 0.92rem; letter-spacing: 0.06em; color: var(--machined-gold); font-weight: 600; display: inline-block; padding: 2px 8px; background: rgba(212, 168, 67, 0.08); border: 1px solid rgba(212, 168, 67, 0.25); border-radius: var(--radius-sm); }
+
+.vcard-statutory-row { margin-bottom: 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.vcard-stat-chip { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; background: rgba(212, 168, 67, 0.06); border: 1px solid rgba(212, 168, 67, 0.22); border-radius: 16px; font-size: 0.78rem; color: var(--cosmic-latte); letter-spacing: 0.03em; }
+.vcard-chip-dot { width: 6px; height: 6px; border-radius: 50%; background: #25D366; box-shadow: 0 0 6px rgba(37, 211, 102, 0.6); }
+.vcard-chip-lbl { font-family: var(--font-heading); font-weight: 800; font-size: 0.7rem; color: var(--machined-gold); letter-spacing: 0.08em; }
+.vcard-chip-code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 600; letter-spacing: 0.05em; color: var(--white); }
 
 /* ─── SOCIAL MEDIA BUTTONS ───────────────────────────────── */
 .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -841,7 +856,8 @@ input, textarea, select { font-family: inherit; }
   .how-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 14px; }
+  .footer-bottom-info { flex-direction: column; justify-content: center; gap: 8px; text-align: center; }
   .about-highlights { grid-template-columns: 1fr; }
   .industries-grid { grid-template-columns: 1fr 1fr; }
   .industries-full-grid { grid-template-columns: 1fr; }
