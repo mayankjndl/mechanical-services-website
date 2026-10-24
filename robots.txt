@@ -1,0 +1,6 @@
+# Robots.txt for Omshree Industries Service
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mechanical-services-website.vercel.app/sitemap.xml

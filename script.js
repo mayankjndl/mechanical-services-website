@@ -4,6 +4,22 @@
    ============================================================ */
 'use strict';
 
+/* ─── INTEGRATIONS: SUPABASE & GOOGLE ANALYTICS ─────────── */
+const SUPABASE_CONFIG = {
+  // Enter client's Supabase Project URL (e.g., https://your-project.supabase.co)
+  url: '',
+  // Enter client's Supabase Anon/Public Key (starts with eyJhbGciOi...)
+  anonKey: '',
+  table: 'enquiries'
+};
+
+// Safe wrapper for Google Analytics (GA4) custom events
+function trackEvent(eventName, params = {}) {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   initMobileNav();
@@ -13,7 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaqAccordion();
   initMarquee();
   initVisitingCard();
+  initClickTracking();
 });
+
+function initClickTracking() {
+  document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+    el.addEventListener('click', () => trackEvent('contact_phone_click', { event_category: 'Lead', phone: el.href }));
+  });
+  document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+    el.addEventListener('click', () => trackEvent('contact_whatsapp_click', { event_category: 'Lead', link: el.href }));
+  });
+}
 
 /* ─── STICKY HEADER ─────────────────────────────────────── */
 function initStickyHeader() {
@@ -131,22 +157,79 @@ function initContactForm() {
     inputs.forEach(i => { if (!validateField(i)) isValid = false; });
     if (!isValid) { shakeForm(); return; }
     setSubmitLoading(submitBtn, true);
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
-      const data = await res.json();
-      if (data.success) {
-        formContainer.style.opacity = '0';
-        formContainer.style.transform = 'translateY(20px)';
-        formContainer.style.transition = 'all 0.4s ease';
-        setTimeout(() => {
-          formContainer.style.display = 'none';
-          successMsg.style.display = 'block';
-          successMsg.style.opacity = '0';
-          requestAnimationFrame(() => { successMsg.style.transition = 'all 0.4s ease'; successMsg.style.opacity = '1'; });
-        }, 400);
-        form.reset();
-      } else throw new Error();
-    } catch {
+
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get('name') || '',
+      company: formData.get('company') || '',
+      phone: formData.get('phone') || '',
+      email: formData.get('email') || '',
+      service: formData.get('service_required') || '',
+      urgency: formData.get('urgency') || '',
+      location: formData.get('location') || '',
+      requirement: formData.get('message') || '',
+      submitted_at: new Date().toISOString()
+    };
+
+    let submittedSuccessfully = false;
+
+    // 1. Supabase REST API (Instant DB Storage)
+    if (SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey) {
+      try {
+        const endpoint = `${SUPABASE_CONFIG.url.replace(/\/$/, '')}/rest/v1/${SUPABASE_CONFIG.table}`;
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_CONFIG.anonKey,
+            'Authorization': `Bearer ${SUPABASE_CONFIG.anonKey}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) submittedSuccessfully = true;
+      } catch (err) {
+        console.warn('Supabase submission failed:', err);
+      }
+    }
+
+    // 2. Web3Forms fallback if access key is set
+    const accessKey = formData.get('access_key');
+    if (!submittedSuccessfully && accessKey && accessKey !== 'YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) submittedSuccessfully = true;
+      } catch (err) {
+        console.warn('Web3Forms submission failed:', err);
+      }
+    }
+
+    // 3. Local demo fallback if integrations are pending configuration
+    if (!SUPABASE_CONFIG.url && (!accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE')) {
+      submittedSuccessfully = true;
+    }
+
+    if (submittedSuccessfully) {
+      trackEvent('generate_lead', {
+        event_category: 'Contact',
+        event_label: payload.service || 'General Enquiry',
+        value: 1
+      });
+      formContainer.style.opacity = '0';
+      formContainer.style.transform = 'translateY(20px)';
+      formContainer.style.transition = 'all 0.4s ease';
+      setTimeout(() => {
+        formContainer.style.display = 'none';
+        successMsg.style.display = 'block';
+        successMsg.style.opacity = '0';
+        requestAnimationFrame(() => {
+          successMsg.style.transition = 'all 0.4s ease';
+          successMsg.style.opacity = '1';
+        });
+      }, 400);
+      form.reset();
+    } else {
       showToast('⚠️ Submission failed. Please call +91 9545318160 directly.');
       setSubmitLoading(submitBtn, false);
     }
@@ -240,6 +323,7 @@ function initVisitingCard() {
         document.body.removeChild(a);
         setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
         showToast('📥 Visiting card downloaded successfully!');
+        trackEvent('download_visiting_card', { event_category: 'Downloads', file: 'visiting_card.jpg' });
       } catch (err) {
         // Fallback to direct navigation / download attribute
         window.open('visiting_card.jpg', '_blank');
@@ -270,6 +354,7 @@ function initVisitingCard() {
         text: 'Omshree Industries Service — Industrial machines repair, CNC/VMC maintenance & skilled manpower in Pune & PCMC. Phone: +91 9545318160.',
         url: cardUrl
       };
+      trackEvent('share_visiting_card', { event_category: 'Engagement', platform: 'WebShare/Clipboard' });
       if (navigator.share) {
         try {
           await navigator.share(shareData);
